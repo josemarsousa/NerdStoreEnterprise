@@ -43,7 +43,7 @@ namespace NSE.Identidade.API
             //Identity
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                //.AddErrorDescriber<IdentityMensagensPortugues>()
+                .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddDefaultTokenProviders();
             //End Identity
 
