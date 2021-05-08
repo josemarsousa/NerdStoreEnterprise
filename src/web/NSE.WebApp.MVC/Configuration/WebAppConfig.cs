@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NSE.WebApp.MVC.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace NSE.WebApp.MVC.Configuration
         public static void AddMvcConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllersWithViews();
+
+            services.Configure<AppSettings>(configuration);
         }
 
         public static void UseMvcConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
@@ -22,11 +25,19 @@ namespace NSE.WebApp.MVC.Configuration
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                ////pega os erros que nao foram tratados - erro de servidor
+                //app.UseExceptionHandler("/erro/500");
+                ////pega os erros que foram tratados
+                //app.UseStatusCodePagesWithRedirects("/erro/{0}");
+                //app.UseHsts();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                //pega os erros que nao foram tratados - erro de servidor
+                app.UseExceptionHandler("/erro/500");
+                //pega os erros que foram tratados
+                app.UseStatusCodePagesWithRedirects("/erro/{0}");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -36,6 +47,9 @@ namespace NSE.WebApp.MVC.Configuration
 
             //Identity
             app.UseIdentityConfiguration();
+
+            //ExceptionMiddleware
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
