@@ -8,7 +8,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["./web/NSE.WebApp.MVC/NSE.WebApp.MVC.csproj", "web/NSE.WebApp.MVC/"]
-
 RUN dotnet restore "web/NSE.WebApp.MVC/NSE.WebApp.MVC.csproj"
 COPY . .
 WORKDIR "web/NSE.WebApp.MVC"
