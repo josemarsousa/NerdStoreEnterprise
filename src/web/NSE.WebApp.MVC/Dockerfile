@@ -7,10 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["src/web/NSE.WebApp.MVC/NSE.WebApp.MVC.csproj", "src/web/NSE.WebApp.MVC/"]
-RUN dotnet restore "src/web/NSE.WebApp.MVC/NSE.WebApp.MVC.csproj"
+COPY ["./web/NSE.WebApp.MVC/NSE.WebApp.MVC.csproj", "web/NSE.WebApp.MVC/"]
+
+RUN dotnet restore "web/NSE.WebApp.MVC/NSE.WebApp.MVC.csproj"
 COPY . .
-WORKDIR "/src/src/web/NSE.WebApp.MVC"
+WORKDIR "web/NSE.WebApp.MVC"
 RUN dotnet build "NSE.WebApp.MVC.csproj" -c Release -o /app/build
 
 FROM build AS publish
