@@ -17,7 +17,7 @@
       }
     },
     "NSE.WebApp.MVC": {
-      "commandName": "IISExpress",
+      "commandName": "Docker",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",

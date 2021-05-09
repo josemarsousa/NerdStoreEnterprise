@@ -6,6 +6,7 @@
     <UserSecretsId>e2ad6445-a191-41ae-b99c-a7a69af7ec41</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
   <ItemGroup>
