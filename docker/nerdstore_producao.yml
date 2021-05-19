@@ -1,6 +1,15 @@
 version: "3.8"
 
 services:
+  sql-server:
+    image: nerdstore-sql-server:latest
+    container_name: nerdstore-sql-server
+    build:
+      context: ../sql
+      dockerfile: ./Dockerfile
+    environment:
+      SA_PASSWORD: "MeuDB@123"
+      ACCEPT_EULA: "Y"
 
   # Image/Container - Web-mvc front
   web-mvc:
@@ -9,7 +18,7 @@ services:
     build:
       context: ../src
       dockerfile: ./web/NSE.WebApp.MVC/Dockerfile
-    ports: 
+    ports:
       - "5001:5001"
       - "5003:5003"
     environment:
@@ -25,10 +34,10 @@ services:
     build:
       context: ../src
       dockerfile: ./services/NSE.Identidade.API/Dockerfile
-    ports: 
+    ports:
       - "5101:5101"
     environment:
       - ASPNETCORE_URLS=http://*:5101
       # - ASPNETCORE_ENVIRONMENT=Development
       # - ASPNETCORE_ENVIRONMENT=Staging
-      - ASPNETCORE_ENVIRONMENT=Production        
+      - ASPNETCORE_ENVIRONMENT=Production
