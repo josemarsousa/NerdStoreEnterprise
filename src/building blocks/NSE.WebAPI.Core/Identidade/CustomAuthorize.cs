@@ -43,7 +43,7 @@ namespace NSE.WebAPI.Core.Identidade
 
             if (!CustomAuthorization.ValidarClaimsUsuario(context.HttpContext, _claim.Type, _claim.Value))
             {
-                context.Result = new StatusCodeResult(403);
+                context.Result = new StatusCodeResult(403); 
             }
         }
     }
