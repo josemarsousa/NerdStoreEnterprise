@@ -29,6 +29,18 @@ namespace NSE.WebApp.MVC.Configuration
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUser, AspNetUser>();
+
+            #region Refit
+
+            //services.AddHttpClient("Refit",
+            //        options =>
+            //        {
+            //            options.BaseAddress = new Uri(configuration.GetSection("CatalogoUrl").Value);
+            //        })
+            //    .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
+            //    .AddTypedClient(Refit.RestService.For<ICatalogoServiceRefit>);
+
+            #endregion
         }
 
         public class PollyExtensions
